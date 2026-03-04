@@ -1,9 +1,13 @@
 import TypingArea from "@/src/components/TypingArea";
+import { cookies } from "next/headers";
 
-export default function Home() {
+export default async function Home() {
+  const cookieStore = await cookies();
+  const username = cookieStore.get("username")?.value || "Anonymous";
+
   return (
     <main>
-      <TypingArea />
+      <TypingArea username={username} />
     </main>
   );
 }
