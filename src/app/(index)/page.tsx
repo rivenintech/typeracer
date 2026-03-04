@@ -1,4 +1,4 @@
-import TypingArea from "../components/TypingArea";
+import TypingArea from "@/src/components/TypingArea";
 
 export default function Home() {
   return (
