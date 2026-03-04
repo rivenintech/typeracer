@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import { saveUserResult } from "../app/(index)/actions";
 import { useGameRound } from "../hooks/useGameRound";
 import { useTypingGame } from "../hooks/useTypingGame";
 
@@ -7,6 +9,12 @@ export default function TypingArea() {
   const { currentRound, timeLeft } = useGameRound();
   const { userInput, handleInput, wpm, accuracy, isFinished } =
     useTypingGame(currentRound);
+
+  useEffect(() => {
+    if (isFinished && wpm > 0 && currentRound) {
+      saveUserResult(currentRound.id, wpm, accuracy);
+    }
+  }, [isFinished, wpm, accuracy, currentRound]);
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-md space-y-6">

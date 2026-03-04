@@ -1,3 +1,4 @@
+"use server";
 import { supabase } from "@/src/lib/supabase";
 
 const SENTENCES = [
@@ -38,4 +39,24 @@ export async function createNewRound() {
   if (error) return { message: error.message };
 
   return { message: "New round created", round: newRound };
+}
+
+export async function saveUserResult(
+  roundId: string,
+  wpm: number,
+  accuracy: number,
+) {
+  const { error } = await supabase.from("results").insert({
+    round_id: roundId,
+    player_name: "Anonymous",
+    wpm: wpm,
+    accuracy: accuracy,
+  });
+
+  if (error) {
+    console.error("Error saving result:", error);
+    return { message: error.message };
+  }
+
+  return { message: "Result saved successfully" };
 }
