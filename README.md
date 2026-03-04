@@ -1,6 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Typeracer Next.js app
 
-## Getting Started
+[Live Demo](https://typeracer-rivens-projects.vercel.app)
+
+## Thoughts
+
+Definitely not my proudest work. This definitely lacks polish and has a lot of flaws in terms of code structure, error handling, and overall architecture, but it was a fun project and I will definitely continue working on it (on a new branch).
+
+### Tech Stack Choices
+
+- Supabase: Database for storing round history and user stats. More importantly, Supabase Realtime (specifically the Presence feature) allowed me to sync live typing progress across multiple clients instantly without having to write and manage custom WebSocket infrastructure.
+- Tailwind CSS: Used for rapid UI development.
+
+### Features Implemented
+
+- Real-time typing interface with standard Typeracer-style character validation.
+- Live calculation of Words Per Minute (WPM) and Accuracy.
+- Global game loop with fixed-time rounds synchronized across all connected clients.
+- Live multiplayer leaderboard showing connected players, their current stats, and a preview of their live typing progress.
+
+### Future Improvements
+
+- Fixing all the issues with the current code structure, improving error handling, and overall architecture of the app.
+- Adding unit, E2E, and integration tests to ensure the app's reliability and maintainability.
+- Adding error logging and monitoring tools like Sentry to track and fix issues in production.
+- Adding validation (Valibot/Zod), sanitization and moving more logic to the server.
+- Adding ORM like Drizzle to improve database type safety and simplify database interactions.
+- Improved UI/UX with mobile support.
+- User Authentication: Allow users to create accounts and track their long-term stats and history.
+- Adding more features like leaderboards, user profiles, and more complex game modes.
+- And so on...
+
+## Getting Started (local development)
 
 First, run the development server:
 
@@ -15,22 +45,3 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
