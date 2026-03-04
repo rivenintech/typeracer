@@ -1,12 +1,27 @@
 import { useEffect, useMemo, useState } from "react";
 
-export function useTypingGame(targetSentence: string) {
+type useTypingGameProps = {
+  id: string;
+  sentence: string;
+  ends_at: string;
+} | null;
+
+export function useTypingGame(currentRound: useTypingGameProps) {
   const [userInput, setUserInput] = useState("");
   const [startTime, setStartTime] = useState<number | null>(null);
   const [endTime, setEndTime] = useState<number | null>(null);
   const [now, setNow] = useState<number>(Date.now());
+  const targetSentence = currentRound?.sentence || "";
 
   const isFinished = userInput === targetSentence;
+
+  useEffect(() => {
+    // Reset the game when the target sentence changes
+    setUserInput("");
+    setStartTime(null);
+    setEndTime(null);
+    setNow(Date.now());
+  }, [currentRound?.id]);
 
   useEffect(() => {
     // Stop the interval if the game hasn't started or is already finished

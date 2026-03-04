@@ -1,27 +1,36 @@
 "use client";
 
+import { useGameRound } from "../hooks/useGameRound";
 import { useTypingGame } from "../hooks/useTypingGame";
 
-export default function TypingArea({ sentence }: { sentence: string }) {
+export default function TypingArea() {
+  const { currentRound, timeLeft } = useGameRound();
   const { userInput, handleInput, wpm, accuracy, isFinished } =
-    useTypingGame(sentence);
+    useTypingGame(currentRound);
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-md space-y-6">
       {/* Stats */}
       <div className="flex justify-between items-center bg-gray-50 p-4 rounded-lg border">
-        <div className="text-lg font-semibold text-gray-700">
-          WPM: <span className="text-blue-600">{wpm}</span>
+        <div className="flex gap-5">
+          <div className="text-lg font-semibold text-gray-700">
+            WPM: <span className="text-blue-600">{wpm}</span>
+          </div>
+          <div className="text-lg font-semibold text-gray-700">
+            Accuracy:{" "}
+            <span className="text-blue-600">
+              {(accuracy * 100).toFixed(1)}%
+            </span>
+          </div>
         </div>
-        <div className="text-lg font-semibold text-gray-700">
-          Accuracy:{" "}
-          <span className="text-blue-600">{(accuracy * 100).toFixed(1)}%</span>
-        </div>
+        <p className="text-lg font-semibold text-gray-700">
+          Time left: <span className="text-blue-600">{timeLeft}</span>
+        </p>
       </div>
 
       {/* Sentence Display */}
       <div className="text-2xl font-medium leading-relaxed tracking-wide select-none p-4 bg-gray-100 rounded-md border border-gray-200">
-        {sentence.split("").map((char, index) => {
+        {currentRound?.sentence.split("").map((char, index) => {
           let colorClass = "text-gray-400";
 
           if (index < userInput.length) {
