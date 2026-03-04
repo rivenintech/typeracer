@@ -1,7 +1,9 @@
+import TypingArea from "../components/TypingArea";
+
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main></main>
-    </div>
+    <main>
+      <TypingArea sentence="The quick brown fox jumps over the lazy dog." />
+    </main>
   );
 }
