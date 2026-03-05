@@ -1,5 +1,5 @@
 "use client";
-import { supabase } from "@/src/lib/supabase";
+import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
 import { createNewRound } from "../app/(index)/actions";
 

@@ -1,5 +1,5 @@
 "use server";
-import { supabase } from "@/src/lib/supabase";
+import { supabase } from "@/lib/supabase";
 
 const SENTENCES = [
   "The quick brown fox jumps over the lazy dog.",

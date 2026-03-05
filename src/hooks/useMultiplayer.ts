@@ -1,4 +1,4 @@
-import { supabase } from "@/src/lib/supabase";
+import { supabase } from "@/lib/supabase";
 import { RealtimeChannel } from "@supabase/supabase-js";
 import { useEffect, useRef, useState } from "react";
 

@@ -1,4 +1,4 @@
-import TypingArea from "@/src/components/TypingArea";
+import TypingArea from "@/components/TypingArea";
 import { cookies } from "next/headers";
 
 export default async function Home() {
