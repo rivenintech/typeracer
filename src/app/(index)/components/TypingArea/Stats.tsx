@@ -1,3 +1,5 @@
+import { formatTimeLeft } from "@/utils/formatTimeLeft";
+
 type StatsProps = {
   stats: { wpm: number; accuracy: number; timeLeft: number };
 };
@@ -17,7 +19,8 @@ export function Stats({ stats }: StatsProps) {
         </div>
       </div>
       <p className="text-lg font-semibold text-gray-700">
-        Time left: <span className="text-blue-600">{stats.timeLeft}</span>
+        Time left:{" "}
+        <span className="text-blue-600">{formatTimeLeft(stats.timeLeft)}</span>
       </p>
     </div>
   );
