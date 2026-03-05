@@ -1,6 +1,7 @@
 "use client";
 
 import CurrentPlayers from "@/components/CurrentPlayers";
+import { Input } from "@/components/ui/input";
 import { useGameRound } from "@/hooks/useGameRound";
 import { useMultiplayer } from "@/hooks/useMultiplayer";
 import { useTypingGame } from "@/hooks/useTypingGame";
@@ -33,17 +34,17 @@ export function TypingArea({ username }: { username: string }) {
         <Stats stats={{ wpm, accuracy, timeLeft }} />
         <TextDisplay text={currentRound?.sentence} userInput={userInput} />
 
-        <input
-          type="text"
-          className="w-full p-4 text-xl border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors placeholder-gray-400 text-gray-500"
-          placeholder="Start typing to begin..."
-          value={userInput}
-          onChange={(e) => handleInput(e.target.value)}
-          disabled={isFinished}
-          autoFocus
-        />
-
-        {isFinished && (
+        {!isFinished ? (
+          <Input
+            type="text"
+            className="p-6 md:text-xl"
+            placeholder="Start typing to begin..."
+            value={userInput}
+            onChange={(e) => handleInput(e.target.value)}
+            disabled={isFinished}
+            autoFocus
+          />
+        ) : (
           <div className="text-center text-green-600 font-bold text-xl animate-pulse">
             Round completed! Wait for the next round...
           </div>

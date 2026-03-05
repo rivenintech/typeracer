@@ -6,7 +6,7 @@ export default async function Home() {
   const username = cookieStore.get("username")?.value || "Anonymous";
 
   return (
-    <main>
+    <main className="my-4">
       <TypingArea username={username} />
     </main>
   );
