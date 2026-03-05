@@ -1,5 +1,5 @@
-import TypingArea from "@/components/TypingArea";
 import { cookies } from "next/headers";
+import { TypingArea } from "./components/TypingArea";
 
 export default async function Home() {
   const cookieStore = await cookies();
