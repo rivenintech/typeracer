@@ -10,8 +10,7 @@ import { TextDisplay } from "./TextDisplay";
 
 export function TypingArea() {
   const { currentRound, timeLeft } = useGameRound();
-  const { userInput, handleInput, wpm, accuracy, isFinished } =
-    useTypingGame(currentRound);
+  const { userInput, handleInput, wpm, accuracy, isFinished } = useTypingGame(currentRound);
 
   useEffect(() => {
     if (isFinished && wpm > 0 && currentRound) {
@@ -20,7 +19,7 @@ export function TypingArea() {
   }, [isFinished, wpm, accuracy, currentRound]);
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-md space-y-6">
+    <div className="mx-auto max-w-3xl space-y-6 rounded-xl bg-white p-6 shadow-md">
       <Stats stats={{ wpm, accuracy, timeLeft }} />
       <TextDisplay text={currentRound?.sentence} userInput={userInput} />
 
@@ -35,7 +34,7 @@ export function TypingArea() {
           autoFocus
         />
       ) : (
-        <div className="text-center text-green-600 font-bold text-xl animate-pulse">
+        <div className="animate-pulse text-center text-xl font-bold text-green-600">
           Round completed! Wait for the next round...
         </div>
       )}

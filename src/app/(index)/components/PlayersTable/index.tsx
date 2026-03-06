@@ -9,13 +9,7 @@ import { columns } from "./columns";
 export function PlayersTable({ username }: { username: string }) {
   const { currentRound } = useGameRound();
   const { userInput, wpm, accuracy } = useTypingGame(currentRound);
-  const { players } = useMultiplayer(
-    currentRound?.id,
-    username,
-    userInput,
-    wpm,
-    accuracy,
-  );
+  const { players } = useMultiplayer(currentRound?.id, username, userInput, wpm, accuracy);
 
   return <DataTable columns={columns} data={players || []} />;
 }

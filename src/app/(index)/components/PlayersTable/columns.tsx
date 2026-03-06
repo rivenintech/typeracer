@@ -30,16 +30,12 @@ export const columns: ColumnDef<PlayerStats>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => (
-      <div className="px-4 py-2 text-blue-600 font-bold">
-        {row.getValue("wpm")}
-      </div>
-    ),
+    cell: ({ row }) => <div className="px-4 py-2 font-bold text-blue-600">{row.getValue("wpm")}</div>,
   },
   {
     accessorKey: "accuracy",
     cell: ({ row }) => (
-      <div className="px-4 py-2 text-blue-600 font-bold">
+      <div className="px-4 py-2 font-bold text-blue-600">
         {(parseFloat(row.getValue("accuracy")) * 100).toFixed(1)}%
       </div>
     ),
@@ -62,10 +58,10 @@ export const columns: ColumnDef<PlayerStats>[] = [
     cell: ({ row }) => {
       const progress = row.getValue("userInput") as string;
       return (
-        <div className="text-gray-500 font-mono text-sm truncate">
+        <div className="truncate font-mono text-sm text-gray-500">
           {/* Show the last 20 characters the user typed so it looks like a live feed */}
           {progress.length > 20 ? "..." + progress.slice(-20) : progress || "-"}
-          <span className="animate-pulse bg-gray-400 w-1.5 h-4 inline-block ml-1 align-middle" />
+          <span className="ml-1 inline-block h-4 w-1.5 animate-pulse bg-gray-400 align-middle" />
         </div>
       );
     },

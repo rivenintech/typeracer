@@ -38,13 +38,9 @@ export function useGameRound() {
   useEffect(() => {
     const channel = supabase
       .channel("public:rounds")
-      .on(
-        "postgres_changes",
-        { event: "INSERT", schema: "public", table: "rounds" },
-        (payload) => {
-          setCurrentRound(payload.new as Round);
-        },
-      )
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "rounds" }, (payload) => {
+        setCurrentRound(payload.new as Round);
+      })
       .subscribe();
 
     return () => {
@@ -57,10 +53,7 @@ export function useGameRound() {
     if (!currentRound) return;
 
     const interval = setInterval(() => {
-      const remaining = Math.max(
-        0,
-        new Date(currentRound.ends_at).getTime() - Date.now(),
-      );
+      const remaining = Math.max(0, new Date(currentRound.ends_at).getTime() - Date.now());
       setTimeLeft(Math.floor(remaining / 1000));
 
       // If time runs out, request a new round

@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <main className="my-4">
       <TypingArea />
-      <div className="mt-8 mx-4">
+      <div className="mx-4 mt-8">
         <PlayersTable username={username} />
       </div>
     </main>

@@ -27,8 +27,7 @@ export async function createNewRound() {
 
   // Create a new round (60 seconds from now)
   const endsAt = new Date(now.getTime() + 60 * 1000);
-  const randomSentence =
-    SENTENCES[Math.floor(Math.random() * SENTENCES.length)];
+  const randomSentence = SENTENCES[Math.floor(Math.random() * SENTENCES.length)];
 
   const { data: newRound, error } = await supabase
     .from("rounds")
@@ -41,11 +40,7 @@ export async function createNewRound() {
   return { message: "New round created", round: newRound };
 }
 
-export async function saveUserResult(
-  roundId: string,
-  wpm: number,
-  accuracy: number,
-) {
+export async function saveUserResult(roundId: string, wpm: number, accuracy: number) {
   const { error } = await supabase.from("results").insert({
     round_id: roundId,
     player_name: "Anonymous",
