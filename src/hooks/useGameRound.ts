@@ -1,5 +1,5 @@
 "use client";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/client";
 import { useEffect, useState } from "react";
 import { createNewRound } from "../app/(index)/actions";
 
@@ -10,6 +10,7 @@ export type Round = {
 };
 
 export function useGameRound() {
+  const supabase = createClient();
   const [currentRound, setCurrentRound] = useState<Round | null>(null);
   const [timeLeft, setTimeLeft] = useState<number>(0);
 

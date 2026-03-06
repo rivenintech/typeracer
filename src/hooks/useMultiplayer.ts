@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/client";
 import { RealtimeChannel } from "@supabase/supabase-js";
 import { useEffect, useRef, useState } from "react";
 
@@ -16,6 +16,7 @@ export function useMultiplayer(
   wpm: number,
   accuracy: number,
 ) {
+  const supabase = createClient();
   const [players, setPlayers] = useState<PlayerState[]>([]);
   const channelRef = useRef<RealtimeChannel | null>(null);
   console.log(roundId, playerName, userInput, wpm, accuracy);

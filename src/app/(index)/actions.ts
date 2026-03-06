@@ -1,5 +1,6 @@
 "use server";
-import { supabase } from "@/lib/supabase";
+
+import { createClient } from "@/lib/supabase/server";
 
 const SENTENCES = [
   "The quick brown fox jumps over the lazy dog.",
@@ -10,6 +11,8 @@ const SENTENCES = [
 ];
 
 export async function createNewRound() {
+  const supabase = await createClient();
+
   // Get the most recent round
   const { data: latestRound } = await supabase
     .from("rounds")
@@ -41,6 +44,8 @@ export async function createNewRound() {
 }
 
 export async function saveUserResult(roundId: string, wpm: number, accuracy: number) {
+  const supabase = await createClient();
+
   const { error } = await supabase.from("results").insert({
     round_id: roundId,
     player_name: "Anonymous",
