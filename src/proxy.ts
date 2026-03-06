@@ -13,12 +13,13 @@ export function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     /*
-     Match all paths except:
-     - /enter-username
-     - /api
-     - /_next
-     - static files
-    */
-    "/((?!enter-username|api|_next|.*\\..*).*)",
+     * Match all request paths except:
+     * - /enter-username (username entry page)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - images - .svg, .png, .jpg, .jpeg, .gif, .webp
+     */
+    "/((?!enter-username|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };
