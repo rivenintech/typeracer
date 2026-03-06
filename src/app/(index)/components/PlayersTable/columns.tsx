@@ -5,10 +5,10 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 
 export type PlayerStats = {
-  player: string;
+  playerName: string;
   wpm: number;
   accuracy: number;
-  progress: string;
+  userInput: string;
 };
 
 export const columns: ColumnDef<PlayerStats>[] = [
